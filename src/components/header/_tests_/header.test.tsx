@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import Header from "../header";
 
-// mock navigation
+// mock next/navigation
 jest.mock("next/navigation", () => ({
     useRouter: () => ({
         push: jest.fn(),

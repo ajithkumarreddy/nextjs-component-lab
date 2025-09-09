@@ -19,7 +19,7 @@ describe("Header", () => {
 
   it("renders back link", () => {
     render(<Header isBackEnabled={true}/>);
-    const backLink = screen.getByRole("link");
+    const backLink = screen.getByTestId("link");
     expect(backLink).toBeInTheDocument();
   });
 });

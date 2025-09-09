@@ -1,13 +1,12 @@
 "use client";
-import { useRouter, usePathname } from "next/navigation";
+import { usePathname } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import RocketLaunch from "../../../public/rocket-launch.svg";
 import type { HeaderProps } from "./header.types";
 import { headerStyles } from "./header.styles";
 
-const Header = ({ isBackEnabled }: HeaderProps) => {
-  const router = useRouter();
+const Header = ({ isBackEnabled = false }: HeaderProps) => {
   const pathname = usePathname();
 
   const showBack = isBackEnabled || pathname.startsWith("/component");
@@ -16,20 +15,24 @@ const Header = ({ isBackEnabled }: HeaderProps) => {
     <header className={headerStyles.wrapper()}>
       {showBack ? (
         <Link
-          role="link"
+          data-testid="link"
           href="/"
+          aria-label="Go back to home"
           className={headerStyles.link()}
         >
           ← Back
         </Link>
       ) : (
-        <Image
-          data-testid="logo"
-          src={RocketLaunch}
-          alt="logo"
-          width={40}
-          height={40}
-        />
+        <div className="flex flex-row items-center space-x-2">
+          <Image
+            data-testid="logo"
+            src={RocketLaunch}
+            alt="App logo"
+            width={28}
+            height={28}
+          />
+          <h1 className="text-xl font-bold">Component Lab</h1>
+        </div>
       )}
     </header>
   );

@@ -11,4 +11,6 @@ interface ComponentMetaDataSchema {
 export const ComponentMetaData: ComponentMetaDataSchema[] = [
   { slug: "counter", title: "Counter App", component: "counter" },
   { slug: "timer", title: "Time Counter", component: "timer" },
+  { slug: "theme-mode", title: "Theme Mode", component: "theme-mode" },
+  { slug: "folder", title: "Folder Structure", component: "folder" },
 ];

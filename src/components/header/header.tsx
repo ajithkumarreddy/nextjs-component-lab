@@ -23,7 +23,7 @@ const Header = ({ isBackEnabled = false }: HeaderProps) => {
           ← Back
         </Link>
       ) : (
-        <div className="flex flex-row items-center space-x-2">
+        <div className="flex flex-row items-center space-x-2 p-4">
           <Image
             data-testid="logo"
             src={RocketLaunch}

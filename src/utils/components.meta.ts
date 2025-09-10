@@ -13,4 +13,5 @@ export const ComponentMetaData: ComponentMetaDataSchema[] = [
   { slug: "timer", title: "Time Counter", component: "timer" },
   { slug: "theme-mode", title: "Theme Mode", component: "theme-mode" },
   { slug: "folder", title: "Folder Structure", component: "folder" },
+  { slug: "todo", title: "Todo App", component: "todo" },
 ];

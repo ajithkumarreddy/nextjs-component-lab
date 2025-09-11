@@ -4,9 +4,12 @@ interface fetchOptions extends RequestInit {
 
 const DEFAULT_BASE_URL = "";
 
-const request = async <T>(url: string, options: fetchOptions): Promise<T> => {
-  const baseUrl = options.baseUrl || DEFAULT_BASE_URL;
-  const response = await fetch(baseUrl + url, options);
+const request = async <T>(
+  url: string,
+  options: fetchOptions = {}
+): Promise<T> => {
+  const baseUrl = url || DEFAULT_BASE_URL;
+  const response = await fetch(baseUrl, options);
 
   if (!response.ok) {
     throw new Error(
@@ -19,7 +22,7 @@ const request = async <T>(url: string, options: fetchOptions): Promise<T> => {
 
 export const useFetchClient = () => {
   const get = async <T>(url: string, options: fetchOptions): Promise<T> => {
-    return request<T>(url, { ...options, method: "GET" });
+    return await request<T>(url, { ...options, method: "GET" });
   };
 
   const post = async <T>(
@@ -27,7 +30,7 @@ export const useFetchClient = () => {
     body: any,
     options: fetchOptions
   ): Promise<T> => {
-    return request<T>(url, {
+    return await request<T>(url, {
       ...options,
       method: "POST",
       headers: {
@@ -43,9 +46,25 @@ export const useFetchClient = () => {
     body: any,
     options: fetchOptions
   ): Promise<T> => {
-    return request<T>(url, {
+    return await request<T>(url, {
       ...options,
       method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        ...(options?.headers || {}),
+      },
+      body: JSON.stringify(body),
+    });
+  };
+
+  const patch = async <T>(
+    url: string,
+    body: any,
+    options: fetchOptions
+  ): Promise<T> => {
+    return await request<T>(url, {
+      ...options,
+      method: "PATCH",
       headers: {
         "Content-Type": "application/json",
         ...(options?.headers || {}),
@@ -58,13 +77,14 @@ export const useFetchClient = () => {
     url: string,
     options: fetchOptions
   ): Promise<T> => {
-    return request<T>(url, { ...options, method: "DELETE" });
+    return await request<T>(url, { ...options, method: "DELETE" });
   };
 
   return {
     get,
     post,
     put,
+    patch,
     deleteReq,
   };
 };

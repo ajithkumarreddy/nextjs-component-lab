@@ -15,4 +15,5 @@ export const ComponentMetaData: ComponentMetaDataSchema[] = [
   { slug: "folder", title: "Folder Structure", component: "folder" },
   { slug: "todo", title: "Todo App", component: "todo" },
   { slug: "traffic-light", title: "Traffic Light", component: "traffic-light" },
+  { slug: "accordian", title: "Accordian", component: "accordian" },
 ];

@@ -32,4 +32,9 @@ export const ComponentMetaData: ComponentMetaDataSchema[] = [
     title: "Infinite Scroll",
     component: "infinite-scroll",
   },
+  {
+    slug: "multi-step-form",
+    title: "Multi Step Form",
+    component: "multi-step-form",
+  },
 ];

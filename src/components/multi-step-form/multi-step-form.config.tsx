@@ -36,7 +36,7 @@ export const stepConfig = [
         label: "ZIP / Postal code",
         placeholder: "NW1 6XE",
         type: 'text',
-        required: false,
+        required: true,
       },
     ],
   },

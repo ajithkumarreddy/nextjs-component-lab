@@ -1,11 +1,12 @@
 "use client";
-import { useState } from "react";
+import { type FC, useState } from "react";
 import { stepConfig } from "./multi-step-form.config";
+import { Field } from "./multi-step-form.types";
 
-const MultiStepForm = () => {
+const MultiStepForm: FC<{}> = () => {
   // initial form values
   const initialFormData = () => {
-    let obj: any = {};
+    let obj: Record<string, any> = {};
     stepConfig.forEach((step) => {
       step.fields.forEach((field) => {
         if (field.type === "checkbox") {
@@ -19,8 +20,29 @@ const MultiStepForm = () => {
   };
 
   const [stepIndex, setStepIndex] = useState<number>(0);
-  const [form, setForm] = useState(initialFormData);
+  const [form, setForm] = useState<Record<string, any>>(() => initialFormData());
   const [submitting, setSubmitting] = useState<boolean>(false);
+
+  const currentStep = stepConfig[stepIndex];
+
+  // validate current step fields
+  const validateStepByConfig = (currentStepConfig: any) => {
+    if (!currentStepConfig) return true;
+    for (const field of currentStepConfig.fields) {
+      const value = form[field.name];
+      if (field.required) {
+        if (String(value).trim() === "") {
+          return false;
+        }
+      }
+    }
+    return true;
+  };
+
+  // update field handler
+  const updateField = (name: string, value: string) => {
+    setForm((prevForm: any) => ({ ...prevForm, [name]: value }));
+  };
 
   // Move back handler
   const handleBack = () => {
@@ -29,13 +51,25 @@ const MultiStepForm = () => {
 
   // Move next handler
   const handleNext = () => {
+    if (!validateStepByConfig(currentStep)) return;
     setStepIndex((prev) => Math.min(stepConfig.length - 1, prev + 1));
   };
 
   // form submission handler
-  const handleFormSubmit = (e: React.FormEvent) => {
+  const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Submitted:", form);
+    setSubmitting(true);
+    try {
+      await new Promise((res) => setTimeout(res, 2000));
+      console.log("Submitted payload:", form);
+      alert("Submitted! Check console for payload.");
+      setForm(() => initialFormData());
+      setStepIndex(0);
+    } catch (err) {
+      throw new Error("Form submission failed");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   // field mapper handler
@@ -53,6 +87,8 @@ const MultiStepForm = () => {
               placeholder={field.placeholder}
               name={field.name}
               required={field.required}
+              value={form[field.name] ?? ""}
+              onChange={(e) => updateField(field.name, e.target.value)}
             />
           </div>
         );
@@ -62,8 +98,6 @@ const MultiStepForm = () => {
       }
     }
   };
-
-  const currentStep = stepConfig[stepIndex];
 
   return (
     <div className="max-w-4xl mx-auto p-12 bg-white rounded-xl shadow-md">
@@ -76,7 +110,7 @@ const MultiStepForm = () => {
                 className={`h-8 w-8 rounded-md flex items-center justify-center border-2 ${
                   index === stepIndex
                     ? "border-blue-500 bg-blue-500 text-white"
-                    : step.id < stepIndex
+                    : index < stepIndex
                     ? "border-green-500 bg-green-500 text-white"
                     : "border-gray-300 bg-gray-300"
                 }`}
@@ -91,7 +125,11 @@ const MultiStepForm = () => {
           <div
             className="h-full bg-blue-600"
             style={{
-              width: `${stepConfig.length > 1 ? (stepIndex / (stepConfig.length - 1)) * 100 : 100}%`,
+              width: `${
+                stepConfig.length > 1
+                  ? (stepIndex / (stepConfig.length - 1)) * 100
+                  : 100
+              }%`,
             }}
           ></div>
         </div>
@@ -128,7 +166,7 @@ const MultiStepForm = () => {
             <button
               type="submit"
               disabled={submitting}
-              className={`px-4 py-2 rounded ${
+              className={`px-4 py-2 rounded cursor-pointer ${
                 submitting
                   ? "bg-gray-200 text-gray-500"
                   : "bg-green-600 text-white"

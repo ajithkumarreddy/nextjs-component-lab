@@ -37,4 +37,9 @@ export const ComponentMetaData: ComponentMetaDataSchema[] = [
     title: "Multi Step Form",
     component: "multi-step-form",
   },
+  {
+    slug: "modal",
+    title: "Modal",
+    component: "modal",
+  },
 ];

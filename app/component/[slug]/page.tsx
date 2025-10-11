@@ -13,10 +13,8 @@ const ComponentPage = async ({ params }: { params: { slug: string } }) => {
   }
 
   const Component = dynamic(() =>
-    import(`@/components/${componentData.slug}`).then((mod) => mod.default)
+    import(`@/components/${componentData.category}/${componentData.slug}`).then((mod) => mod.default)
   );
-
-  console.log(componentData, Component);
 
   return (
     <main className="p-6">

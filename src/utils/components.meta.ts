@@ -3,43 +3,98 @@
  */
 
 interface ComponentMetaDataSchema {
+  category: string;
   slug: string;
   title: string;
   component: string;
 }
 
-export const ComponentMetaData: ComponentMetaDataSchema[] = [
-  { slug: "counter", title: "Counter App", component: "counter" },
-  { slug: "timer", title: "Time Counter", component: "timer" },
-  { slug: "theme-mode", title: "Theme Mode", component: "theme-mode" },
-  { slug: "folder", title: "Folder Structure", component: "folder" },
-  { slug: "todo", title: "Todo App", component: "todo" },
-  { slug: "traffic-light", title: "Traffic Light", component: "traffic-light" },
-  { slug: "accordian", title: "Accordian", component: "accordian" },
+export const BeginnerComponentMetaData: ComponentMetaDataSchema[] = [
   {
+    category: "beginner",
+    slug: "counter",
+    title: "Counter App",
+    component: "counter",
+  },
+  { category: "beginner", slug: "todo", title: "Todo App", component: "todo" },
+  {
+    category: "beginner",
+    slug: "accordian",
+    title: "Accordian",
+    component: "accordian",
+  },
+  {
+    category: "beginner",
+    slug: "modal",
+    title: "Modal",
+    component: "modal",
+  },
+  {
+    category: "beginner",
+    slug: "toast",
+    title: "Toast",
+    component: "toast",
+  },
+  {
+    category: "beginner",
+    slug: "timer",
+    title: "Time Counter",
+    component: "timer",
+  },
+  {
+    category: "beginner",
+    slug: "traffic-light",
+    title: "Traffic Light",
+    component: "traffic-light",
+  },
+  {
+    category: "beginner",
+    slug: "theme-mode",
+    title: "Theme Mode",
+    component: "theme-mode",
+  },
+];
+
+const IntermediateComponentMetaData: ComponentMetaDataSchema[] = [
+  {
+    category: "intermediate",
     slug: "search-autocomplete",
     title: "Search Autocomplete",
     component: "search-autocomplete",
   },
-  { slug: "carousel", title: "Carousel", component: "carousel" },
   {
-    slug: "multi-select-checkbox",
-    title: "Multi Select Checkbox",
-    component: "multi-select-checkbox",
-  },
-  {
+    category: "intermediate",
     slug: "infinite-scroll",
     title: "Infinite Scroll",
     component: "infinite-scroll",
   },
   {
+    category: "intermediate",
+    slug: "carousel",
+    title: "Carousel",
+    component: "carousel",
+  },
+  {
+    category: "intermediate",
+    slug: "folder",
+    title: "Folder Structure",
+    component: "folder",
+  },
+  {
+    category: "intermediate",
+    slug: "multi-select-checkbox",
+    title: "Multi Select Checkbox",
+    component: "multi-select-checkbox",
+  },
+  {
+    category: "intermediate",
     slug: "multi-step-form",
     title: "Multi Step Form",
     component: "multi-step-form",
   },
-  {
-    slug: "modal",
-    title: "Modal",
-    component: "modal",
-  },
+];
+
+export const ComponentMetaData: ComponentMetaDataSchema[] = [
+  ...BeginnerComponentMetaData,
+  ...IntermediateComponentMetaData,
 ];

@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, type FC } from "react";
+import { type FC } from "react";
 import { useTheme } from "./hooks/useTheme";
 
 const ThemeMode: FC = () => {

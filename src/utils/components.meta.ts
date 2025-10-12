@@ -33,7 +33,7 @@ export const BeginnerComponentMetaData: ComponentMetaDataSchema[] = [
     category: "beginner",
     slug: "toast",
     title: "Toast",
-    component: "toast",
+    component: "Toast",
   },
   {
     category: "beginner",

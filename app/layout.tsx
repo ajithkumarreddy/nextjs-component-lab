@@ -3,6 +3,7 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/header/header";
 import { ThemeProvider } from "@/components/beginner/theme-mode/hooks/useTheme";
+import ToastProvider from "@/components/beginner/toast/ToastProvider";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -25,7 +26,9 @@ export default function RootLayout({
       <body className={`${poppins.variable} antialiased`}>
         <Header isBackEnabled={false}/>
         <ThemeProvider>
-          {children}
+          <ToastProvider placement="top-right">
+            {children}
+          </ToastProvider>
         </ThemeProvider>
         <div id="modal-root" />
       </body>

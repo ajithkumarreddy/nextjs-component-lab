@@ -9,7 +9,7 @@ const Toasts: Toast[] = [
     title: "Important Info",
     message: "success",
     type: "info",
-    duration: 2000,
+    duration: 10000,
   },
   {
     id: 2,
@@ -52,7 +52,7 @@ const ToastProviderWithProps = () => {
         className="w-auto h-10 px-2 py-2 bg-blue-500 text-white cursor-pointer font-semibold rounded-md"
         onClick={() => clear()}
       >
-        Clear Toast
+        Clear All Toasts
       </button>
     </div>
   );

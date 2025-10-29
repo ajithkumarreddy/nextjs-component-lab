@@ -43,6 +43,12 @@ export const BeginnerComponentMetaData: ComponentMetaDataSchema[] = [
   },
   {
     category: "beginner",
+    slug: "pagination",
+    title: "Pagination",
+    component: "Pagination",
+  },
+  {
+    category: "beginner",
     slug: "star-rating",
     title: "Star Rating",
     component: "StarRating",

@@ -56,8 +56,14 @@ export const BeginnerComponentMetaData: ComponentMetaDataSchema[] = [
   {
     category: "beginner",
     slug: "timer",
-    title: "Time Counter",
+    title: "Real Time Clock",
     component: "timer",
+  },
+  {
+    category: "beginner",
+    slug: "stopwatch",
+    title: "Stopwatch",
+    component: "stopwatch",
   },
   {
     category: "beginner",

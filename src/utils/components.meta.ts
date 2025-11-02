@@ -56,7 +56,7 @@ export const BeginnerComponentMetaData: ComponentMetaDataSchema[] = [
   {
     category: "beginner",
     slug: "throttle",
-    title: "Throttle Hook",
+    title: "Throttle Text Input",   
     component: "throttle",
   },
   {

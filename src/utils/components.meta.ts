@@ -55,6 +55,12 @@ export const BeginnerComponentMetaData: ComponentMetaDataSchema[] = [
   },
   {
     category: "beginner",
+    slug: "throttle",
+    title: "Throttle Hook",
+    component: "throttle",
+  },
+  {
+    category: "beginner",
     slug: "timer",
     title: "Real Time Clock",
     component: "timer",
